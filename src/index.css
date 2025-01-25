@@ -20,4 +20,9 @@
 .btn-primary {
   @apply w-full text-xs bg-blue-500 text-white p-2 rounded my-1 hover:bg-blue-600;
 }
+/**
+.icon-btn{
+  @apply text-xl text-slate-300 hover:text-primary;
+}
+  **/
 }
