@@ -6,7 +6,7 @@ import AddEditNotes from './AddEditNotes'
 import Modal from "react-modal" 
 
 const Home = () => {
-  const [openAddEditorial, setOpenAddEditModal] = useState({
+  const [openAddEditModal, setOpenAddEditModal] = useState({
     isShown:false,
     type:"add",
     data:null,
@@ -15,7 +15,7 @@ const Home = () => {
     <>
     <Navbar />
     <div className='container mt-5 ml-5'>
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid grid-cols-3 gap-4 mt-8'>
         <NoteCard title="meet"
                   date="4th april"
                   content="meeting"
@@ -38,7 +38,7 @@ const Home = () => {
         </button>
         
         <Modal 
-          isOpen={openAddEditorial.isShown}
+          isOpen={openAddEditModal.isShown}
           onRequestClose={() => {}}
           style={{
             overlay:{
@@ -47,7 +47,13 @@ const Home = () => {
           }}
           contentLabel=""
           className="w-[40%] max-h-3/4 bg-white rounded-md mx-auto mt-14 p-5 overflow-scroll">
-          <AddEditNotes />
+          <AddEditNotes 
+            type={openAddEditModal.type}
+            noteData={openAddEditModal.data}
+            onClose={() => {
+              setOpenAddEditModal({ isShown:false, type:"add", data:null})
+            }}
+          />
         </Modal>    
     </>
   )

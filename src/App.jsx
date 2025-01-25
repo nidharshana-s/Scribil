@@ -2,7 +2,6 @@ import React from 'react'
 import Home from './pages/Home/home'
 import Login from './pages/Login/login'
 import Signup from './pages/SignUp/signup'
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 
