@@ -35,20 +35,29 @@ const signup = () => {
   setError('')
 
   try{
-    const response = await axiosInstance.post("/create-acc", {
-      fullName:name,
-      email:email,
-      password:password
-    })
+    const payload = {
+      fullName: name,
+      email: email,
+      password: password
+    };
+    //console.log("Sending payload:", payload); // Add this line to inspect the payload
+
+    const response = await axiosInstance.post("/create-acc", payload);
 
     if (response.data && response.data.error){
       setError(response.data.message)
       return
     }
-
-    if(response.data && response.data.accesstoken){
-      localStorage.setItem("token", response.data.accesstoken)
+    console.log(response)
+    if(response.data && response.data.accessToken){
+      //console.log("Access Token received:", response.data.accessToken);
+      localStorage.setItem("token", response.data.accessToken)
+      //console.log("Token stored in localStorage:", localStorage.getItem("token"));
+      //console.log(localStorage.getItem("token"));
       navigate('/dashboard')
+    }
+    else{
+      setError("No access token received from the server");
     }
   }catch(error){
     if (error.response && error.response.data && error.response.data.message){
